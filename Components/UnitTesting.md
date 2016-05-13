@@ -2,10 +2,10 @@
 
 Currently we use [jest](https://github.com/facebook/jest/) as our unit testing framework, although this might change in the near future.
 
-When building applications with React & Redux you will spend most of your time testing components. These usually consist of actions, a component and a reducer.
+When building applications with React & Redux you will spend a fair amount of your time writing unit tests. These usually consist of actions, a component and a reducer.
 
 ## Testing Actions
-...
+
 
 
 ## Testing a Component

@@ -4,8 +4,9 @@ Hey there. Welcome.
 
 This is a documentation of Frontend Practices and Conventions at Rainforest.
 
-The Rainforest frontend architecture is actually fairly simple. Here are the high level building blocks that make up __Regenwald__, the Rainforest frontend:
+__Please note__: All the JavaScript examples in this documentation contain [es6](http://es6-features.org/) or newer.
 
-- Components
-- Middleware
-- Libraries
+For starters, you should install all our recommended [tools](Tooling).
+
+- [Components](Components)
+- [Components](Components)
