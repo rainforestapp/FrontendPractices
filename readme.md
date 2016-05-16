@@ -12,8 +12,9 @@ For starters, you should install all our recommended [tools](Tooling).
 ### Contents:
 
 1. [Folder Structure](FolderStructure.md)
-2. [React Components](ReactComponents.md)
-3. [Actions](Actions.md)
-4. [Reducers](Reducers.md)
-5. [UnitTesting](UnitTesting.md)
-6. [Tooling](Tooling.md)
+2. [Naming Conventions](NamingConventions.md)
+3. [React Components](ReactComponents.md)
+4. [Actions](Actions.md)
+5. [Reducers](Reducers.md)
+6. [UnitTesting](UnitTesting.md)
+7. [Tooling](Tooling.md)
