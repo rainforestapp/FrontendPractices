@@ -11,14 +11,14 @@ All PropTypes should be __required__ by default, and only relaxed if needed.
 ## 1 - Component Expressions - for logic-less components
 The most restrictive form React component is a fat arrow expression. Here's an example:
 
-```js
+```jsx
 const HelloComponent = ({ name }) => (<h1>{name}</h1>);
 ```
 
 This is basically just an expression, not allowing for logic of any kind. It's the simplest, most restrictive form of component.
 
 To add proptypes to component expressions, simply attach them to the variable:
-```
+```js
 HelloComponent.propTypes = {
   name: PropTypes.string.isRequired,
 };
@@ -27,7 +27,7 @@ HelloComponent.propTypes = {
 ## 2 - Stateless Components
 A stateless component is literally nothing other than a function which gets passed a props object and returns react element. It doesn't have state, or any of the Component methods like `willComponentMount` or `willComponentReceiveProps`. Here's an example:
 
-```js
+```jsx
 const Bouncer = ({age}) => {
   if (age > 18) {
     return (<div>You're good, please <a href="/enter">come in</a></div>);
