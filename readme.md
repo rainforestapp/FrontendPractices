@@ -7,7 +7,7 @@ Conventions are important. For developing at scale. For efficiency/speed. For ma
 This is an attempt at defining best practices for development with React. Everybody is invited to contribute, just open a pull request.
 
 __Please note__: All the JavaScript examples in this documentation contain [es6](http://es6-features.org/) or newer.
-For starters, you should install all our recommended [tools](Tooling).
+For starters, you should install all our recommended [tools](Tooling.md).
 
 ### Contents:
 

@@ -92,7 +92,7 @@ describe('text actions', () => {
 ```
 
 ### Testing actions that use redux-thunk
-To test actions that make use of the redux-thunk middleware, you really need an actual store, for this we use [redux-mock-store](https://github.com/arnaudbenard/redux-mock-store).
+To test actions that make use of the redux-thunk middleware, you really need an actual store, for this [redux-mock-store](https://github.com/arnaudbenard/redux-mock-store) is recommended.
 
 Given an action that dispatches two http requests and two action types:
 
@@ -127,8 +127,7 @@ const mockStore = configureMockStore(middlewares)
 describe('items actions', () => {
   describe('duplicateItems', () => {
     const store = mockStore({ items: [] });
-
-    .... TODO
+    store.dispatch(duplicateItems());
   });
 });
 ```

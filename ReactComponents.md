@@ -46,7 +46,7 @@ Bouncer.propTypes = {
 
 ## 3 - Component classes
 
-There are a bunch of reasons why you might need...
+There are a bunch of reasons why you might need a compon
 
 ... to be written
 
