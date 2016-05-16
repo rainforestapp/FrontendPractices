@@ -1,12 +1,19 @@
-# Rainforest Frontend Practices
+# React Best Practices and Conventions
 
-Hey there. Welcome.
+React.js is unopinionated. This is smart. It gives the open source community room to shape react-development.
 
-This is a documentation of Frontend Practices and Conventions at Rainforest.
+Conventions are important. For developing at scale. For efficiency/speed. For making life easier for new developers.
+
+This is an attempt at defining best practices for development with React. Everybody is invited to contribute, just open a pull request.
 
 __Please note__: All the JavaScript examples in this documentation contain [es6](http://es6-features.org/) or newer.
-
 For starters, you should install all our recommended [tools](Tooling).
 
-- [Components](Components)
-- [Components](Components)
+### Contents:
+
+1. [Folder Structure](FolderStructure.md)
+2. [React Components](ReactComponents.md)
+3. [Actions](Actions.md)
+4. [Reducers](Reducers.md)
+5. [UnitTesting](UnitTesting.md)
+6. [Tooling](Tooling.md)

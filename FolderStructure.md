@@ -18,12 +18,13 @@ SomeComponent
     index.js
     action.js
     reducer.js
+    mockData.js
   __mocks__
     index.js
-    mockData.js
+    ...
 ```
 
-__Bear in mind__: Each of these files are optional because often a component doesn't need all of them.
+__Bear in mind__: Each of these files are optional. A component mostly only needs a few.
 
 ### index.js
 Contains the React Component itself.
@@ -47,7 +48,7 @@ Contains manual mocks of any of the modules in the folder above (should be avoid
 For our unit tests we often need mock data. We put this in a separate file so it can be used by other modules too.
 
 ## Nested Components
-If a component is only used within another component and never shared, we nest the folder inside another. Like this:
+If you are very certain that a component will only be used inside another (as a child component) and will not be shared, we nest the folder inside another. Like this:
 
 ```
 SomeComponent
