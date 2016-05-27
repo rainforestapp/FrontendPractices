@@ -8,7 +8,7 @@ TLDR they fuck with specificity and worse, it’s next to impossible for anyone 
 
 ## Avoid `float`
 
-<http://www.sitepoint.com/give-floats-the-flick-in-css-layouts/>
+<http://www.sitepoint.com/give-floats-the-flick-in-css-layouts/> prefer to use [flexboxes](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
 
 ## Only Use Class and Pseudo Selectors
 
