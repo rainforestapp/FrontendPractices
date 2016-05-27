@@ -10,6 +10,10 @@ TLDR they fuck with specificity and worse, it’s next to impossible for anyone 
 
 <http://www.sitepoint.com/give-floats-the-flick-in-css-layouts/>
 
+## Only Use Class and Pseudo Selectors
+
+This is actually part of the next rule
+
 ## Use BEM
 
 read about BEM methodology:
@@ -23,7 +27,7 @@ read about BEM methodology:
 
 Blocks should not have rules on positioning themselves since they are meant to be reusable. If you find yourself needing to position a block, then it is actually a [mix](https://en.bem.info/methodology/key-concepts/#mix) of a block and an element of it's parent.
 
-#### Elements Cannot Be Nested Under Another Element
+#### Elements Cannot be Nested Under Another Element
 
 taken from <http://getbem.com/faq/#css-nested-elements>
 
