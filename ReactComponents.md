@@ -8,6 +8,14 @@ All component classes need to be decorated [with proptypes](https://facebook.git
 
 All PropTypes should be __required__ by default, and only relaxed if needed.
 
+## Forms
+
+Default to always using controlled components, only use uncontrolled components when necessary.
+
+The idea that the data you see should be exactly the data you stored/passed in is the cornerstone of React(/Flux/Redux) programming. It __ensures predictability__. Any deviations from this principle __reduce predictability__. Controlled components show exactly the data that you passed in. Uncontrolled components don’t necessarily show exactly the data that you passed in. __Uncontrolled components are less predictable than controlled components__.
+
+further reading at [Uncontrolled Components are an anti-pattern](https://medium.com/@jedwards8/uncontrolled-components-are-an-anti-pattern-abbdd86fd39e#.rzr8uan2c)
+
 ## 1 - Component Expressions - for logic-less components
 The most restrictive form React component is a fat arrow expression. Here's an example:
 
