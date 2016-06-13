@@ -56,7 +56,7 @@ const fetchItems = createAction(
 We use [redux-thunk](https://github.com/gaearon/redux-thunk) in situations where we need something more powerful than the above approaches or when an action doesn't map to one action constant (for example if it dispatches multiple actions).
 
 ```js
-const createItemAndDoSomething = () => (dispatch) => {
+const createItemAndDoSomething = () => (dispatch, getStore) => {
   dispatch(createItem());
   dispatch(doSomething());
 }
@@ -67,7 +67,7 @@ const createItemAndDoSomething = () => (dispatch) => {
 Other times we want to use promises inside thunks to chain several actions together. Since our promise middleware returns the promise back, we can chain dispatches like so:
 
 ```js
-const createItemAndThenDoSomething = () => (dispatch) => {
+const createItemAndThenDoSomething = () => (dispatch, getStore) => {
   dispatch(createItem())
   .then((response) => {
     dispatch(doSomethingWithItem(response.item));
