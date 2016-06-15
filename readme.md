@@ -11,12 +11,13 @@ For starters, you should install all our recommended [tools](Tooling.md).
 
 ### Contents:
 
-1. [Folder Structure](FolderStructure.md)
-2. [Naming Conventions](NamingConventions.md)
-3. [React Components](ReactComponents.md)
-4. [Actions](Actions.md)
-5. [Reducers](Reducers.md)
-6. [UnitTesting](UnitTesting.md)
-7. [Tooling](Tooling.md)
-8. [CSS](Css.md)
-9. [Flow Types](Flow.md)
+1. [Documenting Components and Logic](Documentation.md)
+2. [Folder Structure](FolderStructure.md)
+3. [Naming Conventions](NamingConventions.md)
+4. [React Components](ReactComponents.md)
+5. [Actions](Actions.md)
+6. [Reducers](Reducers.md)
+7. [UnitTesting](UnitTesting.md)
+8. [Tooling](Tooling.md)
+9. [CSS](Css.md)
+10. [Flow Types](Flow.md)
