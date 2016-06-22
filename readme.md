@@ -11,7 +11,7 @@ For starters, you should install all our recommended [tools](Tooling.md).
 
 ### Contents:
 
-1. [Documenting Components and Logic](Documentation.md)
+1. [Documentation](Documentation.md)
 2. [Folder Structure](FolderStructure.md)
 3. [Naming Conventions](NamingConventions.md)
 4. [React Components](ReactComponents.md)
