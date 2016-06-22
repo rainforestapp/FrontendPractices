@@ -98,3 +98,11 @@ Example: (__AVOID__)
 - Never nest ternaries.
 - Double-quotes for 'static' react propTypes like `<something some="hello"/>`.
 - Backtick quotes for string concatenation, also in jsx: ```<something some={`${a}_${b}`}/>```
+
+
+## Paths & Module references
+Only use absolute paths and avoid the use of '../../'.
+
+There's a bunch of reasons for this:
+- Absolute paths are super useful and easier to reason about (You only need to imagine one space/one location), but only if we use them consistently.
+- It means we can update the reference to one module with a single search & replace.
