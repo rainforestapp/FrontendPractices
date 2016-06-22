@@ -97,4 +97,4 @@ Example: (__AVOID__)
 
 - Never nest ternaries.
 - Double-quotes for 'static' react propTypes like `<something some="hello"/>`.
-- Backtick quotes for string concatenation, also in jsx: ```<something some=`${a}_${b}`/>```
+- Backtick quotes for string concatenation, also in jsx: ```<something some={`${a}_${b}`}/>```
