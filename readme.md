@@ -21,3 +21,4 @@ For starters, you should install all our recommended [tools](Tooling.md).
 8. [Tooling](Tooling.md)
 9. [CSS](Css.md)
 10. [Flow Types](Flow.md)
+11. [Routing](Routing.md)
