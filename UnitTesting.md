@@ -196,7 +196,7 @@ describe('Main component', () => {
 
 
 ## HOCs with state
-HOCs with state break completely with shallow rendering. For this, you need to resort to `mount` from enzyme. But we still want to preserve mocking child react components, so we use setup jest manual mocks for them.
+HOCs with state break completely with shallow rendering. For this, you need to resort to `mount` from enzyme which does full rendering. But we still want to test components in isolation from the dependent components. To achieve this, we let Jest auto-mock the dependent components.
 
 
 `mount` by default will throw an error for React components auto mocked by jest. To prevent this, create a manual mock for each dependent react component as follows:
