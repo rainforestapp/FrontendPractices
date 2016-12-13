@@ -1,5 +1,11 @@
 # CSS
 
+## CSS Modules
+All new CSS should be written in CSS modules. Read more about them [here](https://github.com/css-modules/css-modules)
+
+### Naming
+Use camelCase for class names as per the [recommendation](https://github.com/css-modules/css-modules#naming) of the docs. It makes for better interoperability in js eg. you can refer to classes with `styles.tooltipContent` vs `styles['tooltip-content']`
+
 ## Do Not Use `!important`
 
 <https://css-tricks.com/when-using-important-is-the-right-choice/>
@@ -9,6 +15,10 @@ TLDR they fuck with specificity and worse, it’s next to impossible for anyone 
 ## Avoid `float`
 
 <http://www.sitepoint.com/give-floats-the-flick-in-css-layouts/> prefer to use [flexboxes](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
+
+--
+
+*__Note: The convention outlined below may not make sense when using CSS modules and is only included for legacy reasons__*
 
 ## Only Use Class and Pseudo Selectors
 
