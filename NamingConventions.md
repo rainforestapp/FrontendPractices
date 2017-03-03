@@ -1,5 +1,8 @@
 # Naming Conventions
 
+### File suffixes
+- Always use `.js` for javascript files, whether they contain jsx or not
+
 ### camelCase
 
 The default for JavaScript variables is camelCase, starting with lower case.
