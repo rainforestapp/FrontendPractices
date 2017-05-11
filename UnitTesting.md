@@ -13,7 +13,7 @@ When using jest, don't forget to call `jest.dontMock('../myModule')` with the pa
 Bear in mind that when you unmock modules, you need to import them by using `require` instead of `import` since babel's `import` statement does it's importing before jest does it's unmocking.
 
 ## Testing Actions
-Since redux actions are simple functions, it's very easy to test them. 
+Since redux actions are simple functions, it's very easy to test them.
 
 ### Testing simple synchronous actions
 Given a simple action like this:
@@ -34,7 +34,7 @@ This can be simply tested like so:
 
 ```js
 // __tests__/actions.js
-jest.dontMock('../actions');
+jest.unmock('../actions');
 import { ADD_TEXT } from '../../constants'; // we have our constants unmocked by default, hence we don't need to manually unmock them here
 const { addText } = require('../actions');
 
@@ -74,7 +74,7 @@ Now when I test this, I want to know two things. Has http.get been called with t
 
 ```js
 // __tests__/actions.js
-jest.dontMock('../actions');
+jest.unmock('../actions');
 import { http } from '../../http';
 import { FETCHED_ITEMS, API_URL_ITEMS } from '../../constants';
 const { fetchItems } = require('../actions');
@@ -114,7 +114,7 @@ export const duplicateItems = (items) => (dispatch) => (
 What we want to verify here is which urls and payloads the http service has been called with, along with what actions and payloads have been dispatched.
 
 ```js
-// __tests__/actions.j
+// __tests__/actions.js
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 impprt { http } from '../../http';
@@ -132,11 +132,79 @@ describe('items actions', () => {
 });
 ```
 
+You can also test components that link to redux state with a mock store
+```js
+// __tests__/index.jsx
+jest.unmock('../index');
+import React from 'react';
+import configureMockStore from 'redux-mock-store'
+import thunk from 'redux-thunk';
+import { mount } from 'enzyme';
+
+const { default: Component } = require('../index');
+
+const mockStore = configureMockStore([thunk])
+
+describe('Main component', () => {
+  const comp, store;
+  beforeEach(() => {
+    store = mockStore({
+      client: fromJS({
+        settings: { facebook_app_id: '', facebook_secret: '' },
+      }),
+      items: [],
+    });
+
+    comp = mount(<Component />, { context: { store } });
+  });
+  ...
+});
+```
+
 
 ## Testing a Component
 
 We use [enzyme](https://github.com/airbnb/enzyme) for testing React components, it makes life a lot less painfull.
 
+
+## Testing with HOCs
+We actively use HOC, and try to keep most of the logic outside of render. We actively use [recompose](https://github.com/acdlite/recompose) for most of our HOCs along with [react-redux](https://github.com/reactjs/react-redux) and internal HOC helpers.
+
+The tricky part with HOCs is that they dont play nicely with shallow rendering.
+
+## HOCs without any state (e.g. withState)
+For these cases, the testing is much easier. We internally use a utility called `shallowDeepUntil` to shallow the tree until the the component is found. Its used as follows:
+```js
+// __tests__/index.jsx
+jest.unmock('../index');
+import React from 'react';
+import { shallow } from 'enzyme';
+
+const { default: ConnectedComponent, Component } = require('../index');
+
+describe('Main component', () => {
+  const comp, root;
+  beforeEach(() => {
+
+    root = shallow(<ConnectedComponent />);
+    comp = shallowDeepUntil(ConnectedComponent, Component)
+  });
+
+  ...
+});
+```
+
+
+## HOCs with state
+HOCs with state break completely with shallow rendering. For this, you need to resort to `mount` from enzyme which does full rendering. But we still want to test components in isolation from the dependent components. To achieve this, we let Jest auto-mock the dependent components.
+
+
+`mount` by default will throw an error for React components auto mocked by jest. To prevent this, create a manual mock for each dependent react component as follows:
+```js
+//__mocks__/CompA.js
+import React from 'react';
+export default () => <span />;
+```
 
 ## Testing a Reducer
 
