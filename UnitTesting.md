@@ -204,7 +204,7 @@ We use [enzyme](https://github.com/airbnb/enzyme) for testing React components, 
 
 ### Shallow vs Mount
 
-We like the idea of shallow rendering because it constraints ourself to testing a component as a unit, and ensures that we are not asserting the behaviour of child components. However, there are 2 very common pattern that severely diminishes the value of shallow rendering:
+We like the idea of shallow rendering because it constraints ourselves to testing a component as a unit, and ensures that we are not asserting the behaviour of child components. However, there are 2 very common pattern that severely diminishes the value of shallow rendering:
 
 #### Internal subcomponents are not rendered
 
@@ -235,7 +235,7 @@ export default function FooBar() {
 import FooBar from '../component';
 
 const wrapper = shallow(<FooBar />);
-expect(wrapper.find('.foo').exist()).toBeTruthy() // fails
+expect(wrapper.find('.foo').exists()).toBeTruthy() // fails
 ```
 
 #### It's awkward to test components enhanced with a high order component
@@ -301,7 +301,7 @@ export default function FooBar() {
 import FooBar from '../component';
 
 const wrapper = mount(<FooBar />);
-expect(wrapper.find('.foo').exist()).toBeTruthy() // passes
+expect(wrapper.find('.foo').exists()).toBeTruthy() // passes
 
 expect(wrapper).toMatchSnapshot();
 
