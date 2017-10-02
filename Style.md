@@ -33,12 +33,14 @@ Instead you can write something like
 ```jsx
 let boom = null;
 if (isSomething === somethingElse) {
-  boom = (<div>Bababoom
-    <ul>
-      <li>Boing 1</li>
-      <li>Boing 2</li>
-    </ul>
-  </div>);
+  boom = (
+    <div>Bababoom
+      <ul>
+        <li>Boing 1</li>
+        <li>Boing 2</li>
+      </ul>
+    </div>
+   );
 }
 return <div>{boom}</div>;
 ```
@@ -98,3 +100,22 @@ Example: (__AVOID__)
 - Never nest ternaries.
 - Double-quotes for 'static' react propTypes like `<something some="hello"/>`.
 - Backtick quotes for string concatenation, also in jsx: ```<something some={`${a}_${b}`}/>```
+
+## Returning multi-line JSX
+When returning multi-line JSX, the enclosing element's opening and closing tag should be indented properly. This means the closing parenthesis should be in line with the `return` statement.
+
+Example:
+```jsx
+return (
+  <span>
+    <p>whatever</p>
+  </span>
+);
+```
+
+__AVOID__ this:
+```jsx
+return (<span>
+  <p>whatever</p>
+  </span>);
+```
