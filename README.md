@@ -13,7 +13,7 @@ For starters, you should install all our recommended [tools](Tooling.md).
 
 1. [Documentation](Documentation.md)
 2. [Folder Structure](FolderStructure.md)
-3. [Dependencies](Depedencies.md)
+3. [Dependencies](Dependencies.md)
 4. [Naming Conventions](NamingConventions.md)
 5. [React Components](ReactComponents.md)
 6. [Actions](Actions.md)
