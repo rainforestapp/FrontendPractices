@@ -6,7 +6,7 @@ Selectors should be placed in a `selectors.js` file next to the reducers they re
 
 If your selectors do heavy computation, it's beneficial to use [Reselect](https://github.com/reactjs/reselect) to create a memoized selector. See the [Computing Derived Data](http://redux.js.org/docs/recipes/ComputingDerivedData.html) section of the redux guide.
 
-Baring exceptional circumstances, your selectors should aim to be as specific as possible when reading data to the store. One way a selector can be implemented is to read up to where an entity is in the store, and then allowing the selector to accept additional paths within the entity.
+Baring exceptional circumstances, your selectors should aim to be as specific as possible when reading data from the store. One way a selector can be implemented is to read up to where an entity is in the store, and then allowing the selector to accept additional paths within the entity.
 
 Example:
 ```
