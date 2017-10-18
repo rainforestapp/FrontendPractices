@@ -84,7 +84,7 @@ Use HOCs when React Classes / Stateless components are not enough or too restric
 - Making sure state is persistant across user sesstion. See [WithPersistentState](https://github.com/rainforestapp/regenwald/tree/develop/src/app/utilities/withPersistentState)
 - Subscribing / transforming data from redux. See [connect](http://redux.js.org/docs/basics/UsageWithReact.html)
 - Subscribing to action state changes. See [withButtonState](https://github.com/rainforestapp/regenwald/tree/develop/src/app/components/Button/withButtonState.js)
-- Subscribing 
+- Accessing / Interacting with React Router. See [withRouter](https://github.com/ReactTraining/react-router/blob/master/packages/react-router/docs/api/withRouter.md)
 
 Following HOCs are discouraged to use independently and should only be used in conjunction with encouraged HOCs:
 - [featureFlag](https://github.com/rainforestapp/regenwald/tree/develop/src/app/utilities/featureFlag). Use [FeatureFlag](https://github.com/rainforestapp/regenwald/blob/develop/src/app/v2/components/FeatureFlag/index.js) component instead
