@@ -58,7 +58,7 @@ Use component classes whenever local state and event handlers are needed. ES7 re
 
 A simple example of the usage would be:
 ```
-class Button extends React.Component {
+class Counter extends React.Component {
   static defaultProps = { initialCount: 0 }; 
   state = { count: this.props.initialCount }; 
 
