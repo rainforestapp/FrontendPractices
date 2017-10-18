@@ -421,7 +421,6 @@ describe('component', () => {
       items: ['item1', 'item2'],
     });
 
-    fetchItems.mockReturnValue({ type: 'fetch items' });
     wrapper = mount(
       <Component />, 
       { context: {store}, childContextTypes: { store: storeShape } }
