@@ -4,38 +4,47 @@
 
 Our components live in `src/components`
 
-Our frontend architecture is component based and that reflects our folder structure. Every component is bundled with it's actions, reducer, schema, tests and mocks. 
+Our frontend architecture is component based and that reflects our folder structure. Every component is bundled with its actions, reducer, schema, tests and mocks.
 
-They all have the same layout:
+Each file for the component, actions, reducer, spec etc. shoud have a unique file name for easy searching.
+
+Example component:
 
 ```
 SomeComponent
   index.js
-  actions.js
-  reducer.js
-  schema.js
+  SomeComponent.js
+  SomeSubComponent.js
+  SomeComponent.css
+  SomeComponentActions.js
+  SomeComponentReducer.js
+  SomeComponentSchema.js
   __tests__
-    index.js
-    action.js
-    reducer.js
+    SomeComponenent.spec.js
+    SomeComponentActions.spec.js
+    SomeComponentReducer.spec.js
     mockData.js
   __mocks__
     index.js
+    SomeComponent.mock.js
     ...
 ```
 
-__Bear in mind__: Each of these files are optional. A component mostly only needs a few.
+__Bear in mind__: Some of these files are optional. A component mostly only needs a few.
 
 ### index.js
-Contains the React Component itself.
+(Required) Exports all the components needed externally.
 
-### actions.js
+### SomeComponent.js
+Contains the main component to be exported. Should be split into smaller sub-components when necessary.
+
+### SomeComponentActions.js
 Contains all the component's actions.
 
-### reducer.js
+### SomeComponentReducer.js
 Contains the component's reducer.
 
-### schema.js
+### SomeComponentSchema.js
 Contains the [normalizr](https://github.com/gaearon/normalizr) Schema of our component.
 
 ### __tests__
@@ -46,17 +55,3 @@ Contains manual mocks of any of the modules in the folder above (should be avoid
 
 ### mockData.js
 For our unit tests we often need mock data. We put this in a separate file so it can be used by other modules too.
-
-## Nested Components
-If you are very certain that a component will only be used inside another (as a child component) and will not be shared, we nest the folder inside another. Like this:
-
-```
-SomeComponent
-  index.js
-  actions.js
-  ...
-  SomeChildComponent
-    index.js
-    actions.js
-    ...
-```
