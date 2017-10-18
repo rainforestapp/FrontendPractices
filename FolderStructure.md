@@ -20,7 +20,8 @@ SomeComponent
   SomeComponentReducer.js
   SomeComponentSchema.js
   __tests__
-    SomeComponenent.spec.js
+    SomeComponent.spec.js
+    SomeSubComponent.spec.js
     SomeComponentActions.spec.js
     SomeComponentReducer.spec.js
     mockData.js
