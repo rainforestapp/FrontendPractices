@@ -60,7 +60,7 @@ A simple example of the usage would be:
 ```
 class Button extends React.Component {
   static defaultProps = { initialCount: 0 }; 
-  static state = { count: this.props.initialCount }; 
+  state = { count: this.props.initialCount }; 
 
   increment = () => this.setState({ count: this.state.count + 1 });
   decrement = () => this.setState({ count: this.state.count - 1 });
