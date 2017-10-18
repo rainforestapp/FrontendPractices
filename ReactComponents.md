@@ -81,7 +81,7 @@ class Counter extends React.Component {
 
 Use HOCs when React Classes / Stateless components are not enough or too restrictive to implement certain behaviours. A good set usecases would be
 
-- Making sure state is persistant across user sesstion. See [WithPersistentState](https://github.com/rainforestapp/regenwald/tree/develop/src/app/utilities/withPersistentState)
+- Making sure state is persistent across user session. See [WithPersistentState](https://github.com/rainforestapp/regenwald/tree/develop/src/app/utilities/withPersistentState)
 - Subscribing / transforming data from redux. See [connect](http://redux.js.org/docs/basics/UsageWithReact.html)
 - Subscribing to action state changes. See [withButtonState](https://github.com/rainforestapp/regenwald/tree/develop/src/app/components/Button/withButtonState.js)
 - Accessing / Interacting with React Router. See [withRouter](https://github.com/ReactTraining/react-router/blob/master/packages/react-router/docs/api/withRouter.md)
