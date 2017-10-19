@@ -3,10 +3,8 @@ React components are the building blocks of our UI. If you're not sure what a Re
 
 There are a few forms to define React Component and they all have their tradeoffs. You should choose which form fits your needs best. We like our React components as simple as possible, to avoid complexity, hence we aim to use the simplest forms first. Below is a list of different forms of defining React components, starting with the simplest.
 
-## PropTypes
-All component classes need to be decorated [with proptypes](https://facebook.github.io/react/docs/reusable-components.html).
-
-All PropTypes should be __required__ by default, and only relaxed if needed.
+## Flow Types
+All components should by default be typed [with flow](https://flow.org/en/docs/react/).
 
 ## Forms
 
@@ -45,18 +43,50 @@ const Bouncer = ({age}) => {
 ```
 As you can see, this is much like the component expression, with the only difference beeing that you now have a function body in which you can add logic to your component.
 
-To add propTypes to stateless components, simply attach them to the variable:
+To add flow types to stateless components, simply type the props argument explicitly:
 ```
-Bouncer.propTypes = {
-  age: PropTypes.number.isRequired,
-};
+type Props = {
+  age: number;
+}
+
+const Bouncer = ({ age }: Props) => (...);
 ```
 
 ## 3 - Component classes
 
-There are a bunch of reasons why you might need a compon
+Use component classes whenever local state and event handlers are needed. ES7 reduces a lot of boiler plate to use React Classes compared to recompose or other alternatives. 
 
-... to be written
+A simple example of the usage would be:
+```
+class Counter extends React.Component {
+  static defaultProps = { initialCount: 0 }; 
+  state = { count: this.props.initialCount }; 
 
+  increment = () => this.setState({ count: this.state.count + 1 });
+  decrement = () => this.setState({ count: this.state.count - 1 });
 
-React components have two containers for data: `state` and `props`.
+  render() {
+    return (
+      <div>
+        {this.state.count}
+        <Button onClick={this.increment}>Inc</Button>
+        <Button onClick={this.decrement}>Dec</Button>
+      </div>
+    );
+  }
+}
+```
+
+## 4 - HOCs
+
+Use HOCs when React Classes / Stateless components are not enough or too restrictive to implement certain behaviours. A good set usecases would be
+
+- Making sure state is persistent across user session. See [WithPersistentState](https://github.com/rainforestapp/regenwald/tree/develop/src/app/utilities/withPersistentState)
+- Subscribing / transforming data from redux. See [connect](http://redux.js.org/docs/basics/UsageWithReact.html)
+- Subscribing to action state changes. See [withButtonState](https://github.com/rainforestapp/regenwald/tree/develop/src/app/components/Button/withButtonState.js)
+- Accessing / Interacting with React Router. See [withRouter](https://github.com/ReactTraining/react-router/blob/master/packages/react-router/docs/api/withRouter.md)
+
+Following HOCs are discouraged to use independently and should only be used in conjunction with encouraged HOCs:
+- [featureFlag](https://github.com/rainforestapp/regenwald/tree/develop/src/app/utilities/featureFlag). Use [FeatureFlag](https://github.com/rainforestapp/regenwald/blob/develop/src/app/v2/components/FeatureFlag/index.js) component instead
+- withProps / mapProps / branch. Try to move those computations in the render part of the component itself.
+- withState / withStateHandlers / withHandlers / lifecycle. Try using a React Class instead
