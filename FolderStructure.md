@@ -6,7 +6,7 @@ Our components live in `src/components`
 
 Our frontend architecture is component based and that reflects our folder structure. Every component is bundled with its actions, reducer, schema, tests and mocks.
 
-Each file for the component, actions, reducer, spec etc. shoud have a unique file name for easy searching.
+Each file for the component, actions, reducer, spec etc. shoud have a unique file name for easy searching. The mocks, however, must match exactly in filenames and export patterns.
 
 Example component:
 
@@ -27,7 +27,7 @@ SomeComponent
     mockData.js
   __mocks__
     index.js
-    SomeComponent.mock.js
+    SomeComponent.js
     ...
 ```
 
