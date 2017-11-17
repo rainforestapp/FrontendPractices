@@ -1,55 +1,108 @@
-# FolderStructure
+# Folder Structure
 
-## Component Folder Structure
 
-Our components live in `src/components`
-
-Our frontend architecture is component based and that reflects our folder structure. Every component is bundled with its actions, reducer, schema, tests and mocks.
-
-Each file for the component, actions, reducer, spec etc. shoud have a unique file name for easy searching. The mocks, however, must match exactly in filenames and export patterns.
-
-Example component:
+This is the folder structure we are using:
 
 ```
-SomeComponent
-  index.js
-  SomeComponent.js
-  SomeSubComponent.js
-  SomeComponent.css
-  SomeComponentActions.js
-  SomeComponentReducer.js
-  SomeComponentSchema.js
-  __tests__
-    SomeComponent.spec.js
-    SomeSubComponent.spec.js
-    SomeComponentActions.spec.js
-    SomeComponentReducer.spec.js
-    mockData.js
-  __mocks__
-    index.js
-    SomeComponent.js
-    ...
+src/app
+  application.js
+  Router.js
+  state.js
+  Components
+    TestList
+      index.js
+      TestList.js
+      __mocks__
+        index.js
+        TestList.js
+      __tests__
+        TestList.js
+    Button
+      index.js
+      Button.js
+      __mocks__
+        index.js
+        Button.js
+      __tests__
+        Button.js
+  Views
+    Tests
+      index.js
+      Tests.js
+      __mocks__
+        index.js
+        Tests.js
+      __tests__
+        Tests.js
+    Results
+      index.js
+      ...
+      RunSummary
+        index.js
+        ...
+        TestResult
+          index.js
+          ...
+  Models
+    Feature
+      index.js
+      FeatureReducer.js
+      FeatureSelectors.js
+      FeatureActions.js
+      FeatureTypes.js
+      FeatureSchema.js
+      FeatureUtils.js
+      __mocks__
+        index.js
+        FeatureActions.js
+        ...
+      __tests__
+        FeatureReducer.js
+        FeatureSelectors.js
+        ...
 ```
 
-__Bear in mind__: Some of these files are optional. A component mostly only needs a few.
+`application.js` is the application entry point.
+`Router.js` contains the application route configuration.
+`state.js` contains the redux store.
 
-### index.js
-(Required) Exports all the components needed externally.
+Our frontend architecture is comprised of 3 main entities: `Components`, `Views`, and `Models`.
 
-### SomeComponent.js
-Contains the main component to be exported. Should be split into smaller sub-components when necessary.
+## Components
 
-### SomeComponentActions.js
-Contains all the component's actions.
+A place for reusable react components. To be useful they need to be imported and rendered by a view. Components defined at the root `Components` folder can be used anywhere in the application. Components nested in another component can only be used by it's direct parent.
 
-### SomeComponentReducer.js
-Contains the component's reducer.
+## Views
 
-### SomeComponentSchema.js
-Contains the [normalizr](https://github.com/gaearon/normalizr) Schema of our component.
+These refer to actual pages in the application. They should be imported and rendered by the Router. Components can be defined within a view but it's should only be used within that view. The main purpose for defining sub components within a view should be for organization or reuse within that view. For more general reusability that component should be placed under the `Components` folder.
+
+## Models
+
+Each model represents a single concept of the application. This is heavily inspired by [re-ducks](https://github.com/alexnm/re-ducks). Most of the time this will be the frontend representation of a backend model (tests, runs, features, etc.) but they can also represent a concept that doesn't exist in the backend (eg. notifications).
+
+Files in a model:
+- Reducer
+- Schema - [Normalizr](https://github.com/gaearon/normalizr) schema, api response payload should be normalized before being stored in the reducer.
+- Selectors - Reading from the store should only be done through selectors.
+- Actions - Contains all actions related to the model.
+- Types - Contains both action type and flow type definitions.
+- Utilities - Helper functions related to this particular model.
+
+These files should be prefixed by the model name, so for a `Feature` model, the file names should be:
+- `FeatureReducer.js`
+- `FeatureSchema.js`
+- `FeatureSelectors.js`
+- `FeatureActions.js`
+- `FeatureTypes.js`
+- `FeatureUtils.js`
+
+## Common Files
+
+## index.js
+Every Model, View, and Component should have an `index.js` file that serves as an entry point to that module.
 
 ### __tests__
-Contains unit tests for component, actions and reducer.
+Contains unit tests for that module.
 
 ### __mocks__
 Contains manual mocks of any of the modules in the folder above (should be avoided). When there is a mock with an equivalent name, jest will use this instead of automatically mocking the module.
