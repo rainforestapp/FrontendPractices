@@ -30,4 +30,4 @@ const getTestFeatureId = (state, testId) => getTest(state, testId, ['feature_id'
 const getTestRoute = (state, testId) => getTest(state, testId, ['reroute_geo']);
 ```
 
-This allows us to easily see what attributes of an entity is used accross the app. It's also easier to refactor should the location of an attribute within an entity changes
+This allows us to easily see what attributes of an entity is used across the app. It's also easier to refactor should the location of an attribute within an entity changes

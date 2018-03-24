@@ -41,7 +41,7 @@ const Bouncer = ({age}) => {
   return (<div>Sorry dude, no underage drinking. Come back in a few years.</div>);
 }
 ```
-As you can see, this is much like the component expression, with the only difference beeing that you now have a function body in which you can add logic to your component.
+As you can see, this is much like the component expression, with the only difference being that you now have a function body in which you can add logic to your component.
 
 To add flow types to stateless components, simply type the props argument explicitly:
 ```
