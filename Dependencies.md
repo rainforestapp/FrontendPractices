@@ -1,4 +1,4 @@
-# Depedencies
+# Dependencies
 
 ### Explicit version numbers
 We prefer explicit versions over version ranges when installing packages from npm.
@@ -20,7 +20,7 @@ For example, to include lodash in a module, you'd usually do something like `imp
 ### Import order
 Only put imports at the top of the file.
 When importing, put third party modules first, followed by our own modules ordered by distance from the current file, followed by style imports, and then type imports.
-```
+```javascript
 import React from 'react';
 import isEmpty from 'lodash/lang/isEmpty';
 
