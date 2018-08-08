@@ -16,7 +16,7 @@ src/app
         index.js
         TestList.js
       __tests__
-        TestList.js
+        TestList.spec.js
     Button
       index.js
       Button.js
@@ -24,7 +24,7 @@ src/app
         index.js
         Button.js
       __tests__
-        Button.js
+        Button.spec.js
   Views
     Tests
       index.js
@@ -33,7 +33,7 @@ src/app
         index.js
         Tests.js
       __tests__
-        Tests.js
+        Tests.spec.js
     Results
       index.js
       ...
@@ -57,8 +57,8 @@ src/app
         FeatureActions.js
         ...
       __tests__
-        FeatureReducer.js
-        FeatureSelectors.js
+        FeatureReducer.spec.js
+        FeatureSelectors.spec.js
         ...
 ```
 
@@ -103,6 +103,13 @@ Every Model, View, and Component should have an `index.js` file that serves as a
 
 ### __tests__
 Contains unit tests for that module.
+
+Files should be named similarly to the file they are testing but with the extension `.spec.js`. For example:
+
+```
+FeatureActions.js
+__tests__/FeatureActions.spec.js
+```
 
 ### __mocks__
 Contains manual mocks of any of the modules in the folder above (should be avoided). When there is a mock with an equivalent name, jest will use this instead of automatically mocking the module.

@@ -7,6 +7,13 @@ When building applications with React & Redux you will spend a fair amount of yo
 ## Folder Structure
 As said in our [Folder Structure](FolderStructure.md) doc, we put our tests in a folder called `__tests__`, in the same directory as the module we are testing.
 
+Files should be named similarly to the file they are testing but with the extension `.spec.js`. For example:
+
+```
+FeatureActions.js
+__tests__/FeatureActions.spec.js
+```
+
 ## Jest
 When using jest, don't forget to call `jest.unmock('../myModule')` with the path of the module you are testing, since we have automocking turned on.
 
