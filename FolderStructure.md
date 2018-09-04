@@ -8,7 +8,7 @@ src/app
   application.js
   Router.js
   state.js
-  Components
+  components
     TestList
       index.js
       TestList.js
@@ -25,7 +25,7 @@ src/app
         Button.js
       __tests__
         Button.spec.js
-  Views
+  routes
     Tests
       index.js
       Tests.js
@@ -43,7 +43,7 @@ src/app
         TestResult
           index.js
           ...
-  Models
+  models
     Feature
       index.js
       FeatureReducer.js
@@ -72,9 +72,9 @@ Our frontend architecture is comprised of 3 main entities: `Components`, `Views`
 
 A place for reusable react components. To be useful they need to be imported and rendered by a view. Components defined at the root `Components` folder can be used anywhere in the application. Components nested in another component can only be used by it's direct parent.
 
-## Views
+## Routes
 
-These refer to actual pages in the application. They should be imported and rendered by the Router. Components can be defined within a view but it's should only be used within that view. The main purpose for defining sub components within a view should be for organization or reuse within that view. For more general reusability that component should be placed under the `Components` folder.
+These refer to actual pages in the application. They should be imported and rendered by the Router. Components can be defined within a route but it's should only be used within that view. The main purpose for defining sub components within a view should be for organization or reuse within that view. For more generally reusable should be placed under the `Components` folder.
 
 ## Models
 
