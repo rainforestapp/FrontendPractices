@@ -32,3 +32,7 @@ Examples: `STANDARD_TIMEOUT`, `API_URL`, `USER_DID_SOMETHING`. The third example
 For variables containing booleans, prefix with __is__ or __has__.
 
 Examples: __isVisible__, __isActive__, __isDefault__, __hasSelectedElement__.
+
+### Analytic events
+
+Try to follow the [Object Action Framework](https://segment.com/academy/collecting-data/naming-conventions-for-clean-data/) when naming events and their properties.
