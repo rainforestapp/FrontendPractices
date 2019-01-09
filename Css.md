@@ -6,6 +6,87 @@ All new CSS should be written in CSS modules. Read more about them [here](https:
 ### Naming
 Use camelCase for class names as per the [recommendation](https://github.com/css-modules/css-modules#naming) of the docs. It makes for better interoperability in js eg. you can refer to classes with `styles.tooltipContent` vs `styles['tooltip-content']`
 
+
+### Customizing UI Components
+
+In the past we've typically done this to customize css:
+
+```
+<div className={classnames(props.className, styles.className)}></div>
+```
+
+The problem with that is it can result in undefined behavior - when you have to class names applied and they have conflicting properties, the one defined later in the resulting css wins.
+
+Instead, use only the props class name, and fallback to a default builtin:
+
+```
+<div className={props.className || styles.className}></div>
+
+or
+
+const comp = ({ className = styles.className }) => <div className={className} />
+```
+
+In this case, if you only want to override one property of styles.className, then the css class where props.className is defined needs to import and compose what it needs from styles.className, and inside styles you can split out the more general styles:
+
+```
+styles.css:
+
+.classNameBase {
+  /* basic styles used for all instances */
+}
+
+.className {
+  composes: classNameBase;
+  /* more specific rules */
+}
+
+--
+some parent component.css:
+
+@value classNameBase from '../some/component';
+.thisComponent {
+  composes: classNameBase;
+  /* different specific rules here */
+}
+```
+
+This means the composing is done in the actual css, and the rendered element only needs to know about one class name. However it's still ok to apply some conditional classes as needed, as long as they don't conflict with the main class:
+
+```
+<div className={classnames(props.className || styles.className},
+{
+  [styles.editing]: isEditing,
+  [styles.notEditing]: !isEditing,
+}
+)></div>
+```
+
+This approach should be used when the component being customized needs many changes outside of the scope of style props mentioned in the next section - whenever possible, use style props instead.
+
+### Style Props
+
+For common customizations such as margin or color, it can be quite painful to create CSS base classes and compose them for every instance of a UI element. Things like positioning should be easily modifiable by any component that wants to use some UI component. So in general, reusable/UI components should take in props for margin, color, size, and whatever is likely to be overridden, and then use propsToClassname to convert them into classes. The string passed in as the prop is given the proper prefix based on our CSS helper classes (`color="blue"` becomes the class `color-blue`). This way, you can simply do this:
+
+```
+const SomeUiComponent = ({
+  color = 'blue',
+  size = 'small',
+  margin = 'small',
+  className = styles.className
+}) => <div 
+        className={classnames(
+          className,
+          propsToClassnames({ color, size })
+       )}
+/>
+
+---
+
+// render component with custom styles
+<SomeUiComponent size="large" color="red" />
+```
+
 ## Do Not Use `!important`
 
 <https://css-tricks.com/when-using-important-is-the-right-choice/>
