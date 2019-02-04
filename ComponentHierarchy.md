@@ -14,7 +14,7 @@ SomeComponent
 
 Which looks like this in jsx:
 
-```jsx harmony
+```jsx
 <SomeComponent>
   <SomeChildComponent />
 </SomeComponent>
@@ -27,7 +27,7 @@ The above approach works fine in most cases, but for reusable basic building blo
 
 Let's say have `UI/index.js` which contains components for defining the application layout. We defined a `Page` and `PageTitle`, now we need to introduce a layout with a `Sidebar`, which requires having a common wrapper for the main content node and the sidebar. We could define the intended structure by just using nested folders but let's consider this alternative:
 
-```jsx harmony
+```jsx
 <Page>
   <Page.Title>Title</Page.Title>
   <Page.Content>
