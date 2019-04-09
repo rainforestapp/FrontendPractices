@@ -74,7 +74,7 @@ A place for reusable react components. To be useful they need to be imported and
 
 ## Routes
 
-These refer to actual pages in the application. They should be imported and rendered by the Router. Components can be defined within a route but it's should only be used within that view. The main purpose for defining sub components within a view should be for organization or reuse within that view. For more generally reusable should be placed under the `Components` folder.
+These refer to actual pages in the application. They should be imported and rendered by the Router. Components can be defined within a route but they should only be used within that view. The main purpose for defining sub components within a view should be for organization or reuse within that view. More generally reusable components should be placed under the `Components` folder.
 
 ## Models
 
@@ -120,3 +120,60 @@ You need to import the actual component (not the mock) and it needs to have an a
 
 ### mockData.js
 For our unit tests we often need mock data. We put this in a separate file so it can be used by other modules too.
+
+## Styles (CSS Modules)
+
+When naming style (CSS Modules) files, avoid the usage of a common `styles.css` file, and prefer colocating them named after the closest component's folder they belong to.
+As this style files grow larger, as you would do with components, consider splitting and naming them after the component they belong.
+
+```
+src/app
+  application.js
+  Router.js
+  state.js
+  components
+    TestList
+      index.js
+      Controls
+        Controls.js
+      Filters
+        Filters.css
+        Filters.js
+      TestList.css
+      TestList.js
+      __mocks__
+        ...
+      __tests__
+        ...
+    Button
+      index.js
+      Button.css
+      Button.js
+      __mocks__
+        ...
+      __tests__
+        ...
+  routes
+    Tests
+      index.js
+      Tests.css
+      Tests.js
+      __mocks__
+        ...
+      __tests__
+        ...
+    Results
+      index.js
+      ...
+      RunSummary
+        index.js
+        RunSummary.css
+        RunSummary.js
+        ...
+        TestResult
+          index.js
+          TestResult.js
+          ...
+  models
+    ...  
+```
