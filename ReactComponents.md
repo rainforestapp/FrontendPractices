@@ -57,7 +57,7 @@ const Bouncer = ({ age }: Props) => (...);
 Use component classes whenever local state and event handlers are needed. ES7 reduces a lot of boiler plate to use React Classes compared to recompose or other alternatives. 
 
 A simple example of the usage would be:
-```
+```jsx
 class Counter extends React.Component {
   static defaultProps = { initialCount: 0 }; 
   state = { count: this.props.initialCount }; 

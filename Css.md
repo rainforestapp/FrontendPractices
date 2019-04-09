@@ -11,7 +11,7 @@ Use camelCase for class names as per the [recommendation](https://github.com/css
 
 In the past we've typically done this to customize css:
 
-```
+```jsx
 <div className={classnames(props.className, styles.className)}></div>
 ```
 
@@ -19,18 +19,18 @@ The problem with that is it can result in undefined behavior - when you have to 
 
 Instead, use only the props class name, and fallback to a default builtin:
 
-```
+```jsx
 <div className={props.className || styles.className}></div>
 
-or
+// or
 
 const comp = ({ className = styles.className }) => <div className={className} />
 ```
 
 In this case, if you only want to override one property of styles.className, then the css class where props.className is defined needs to import and compose what it needs from styles.className, and inside styles you can split out the more general styles:
 
-```
-styles.css:
+```css
+/* styles.css: */
 
 .classNameBase {
   /* basic styles used for all instances */
@@ -41,8 +41,7 @@ styles.css:
   /* more specific rules */
 }
 
---
-some parent component.css:
+/* some parent component.css: */
 
 @value classNameBase from '../some/component';
 .thisComponent {
@@ -53,7 +52,7 @@ some parent component.css:
 
 This means the composing is done in the actual css, and the rendered element only needs to know about one class name. However it's still ok to apply some conditional classes as needed, as long as they don't conflict with the main class:
 
-```
+```jsx
 <div className={classnames(props.className || styles.className},
 {
   [styles.editing]: isEditing,
@@ -68,21 +67,21 @@ This approach should be used when the component being customized needs many chan
 
 For common customizations such as margin or color, it can be quite painful to create CSS base classes and compose them for every instance of a UI element. Things like positioning should be easily modifiable by any component that wants to use some UI component. So in general, reusable/UI components should take in props for margin, color, size, and whatever is likely to be overridden, and then use propsToClassname to convert them into classes. The string passed in as the prop is given the proper prefix based on our CSS helper classes (`color="blue"` becomes the class `color-blue`). This way, you can simply do this:
 
-```
+```jsx
 const SomeUiComponent = ({
   color = 'blue',
   size = 'small',
   margin = 'small',
   className = styles.className
-}) => <div 
-        className={classnames(
-          className,
-          propsToClassnames({ color, size })
-       )}
+}) => <div
+  className={classnames(
+    className,
+    propsToClassnames({ color, size })
+  )}
 />
+```
 
----
-
+```jsx
 // render component with custom styles
 <SomeUiComponent size="large" color="red" />
 ```

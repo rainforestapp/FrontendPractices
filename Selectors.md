@@ -10,7 +10,7 @@ If your selectors do heavy computation, it's beneficial to use [Reselect](https:
 Baring exceptional circumstances, your selectors should aim to be as specific as possible when reading data from the store. One way a selector can be implemented is to read up to where an entity is in the store, and then allowing the selector to accept additional paths within the entity.
 
 Example:
-```
+```js
 const getTest = ({ tests }, id, path) => tests.getIn([id, ...path);
 
 // get the feature id of a test
@@ -20,7 +20,7 @@ getTest(state, 42, ['feature_id']);
 getTest(state, 42, ['reroute_geo']);
 ```
 Rather than doing this, create different selectors for each case
-```
+```js
 const getTest = ({ tests }, id, path) => tests.getIn([id, ...path);
 
 // get the feature id of a test
