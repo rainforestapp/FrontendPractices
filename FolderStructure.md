@@ -74,7 +74,7 @@ A place for reusable react components. To be useful they need to be imported and
 
 ## Routes
 
-These refer to actual pages in the application. They should be imported and rendered by the Router. Components can be defined within a route but they should only be used within that view. The main purpose for defining sub components within a view should be for organization or reuse within that view. For more generally reusable should be placed under the `Components` folder.
+These refer to actual pages in the application. They should be imported and rendered by the Router. Components can be defined within a route but they should only be used within that view. The main purpose for defining sub components within a view should be for organization or reuse within that view. More generally reusable components should be placed under the `Components` folder.
 
 ## Models
 
