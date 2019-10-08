@@ -14,23 +14,7 @@ The idea that the data you see should be exactly the data you stored/passed in i
 
 further reading at [Uncontrolled Components are an anti-pattern](https://medium.com/@jedwards8/uncontrolled-components-are-an-anti-pattern-abbdd86fd39e#.rzr8uan2c)
 
-## 1 - Component Expressions - for logic-less components
-The most restrictive form React component is a fat arrow expression. Here's an example:
-
-```jsx
-const HelloComponent = ({ name }) => (<h1>{name}</h1>);
-```
-
-This is basically just an expression, not allowing for logic of any kind. It's the simplest, most restrictive form of component.
-
-To add proptypes to component expressions, simply attach them to the variable:
-```js
-HelloComponent.propTypes = {
-  name: PropTypes.string.isRequired,
-};
-```
-
-## 2 - Stateless Components
+## 1 - Stateless Components
 A stateless component is literally nothing other than a function which gets passed a props object and returns react element. It doesn't have state, or any of the Component methods like `willComponentMount` or `willComponentReceiveProps`. Here's an example:
 
 ```jsx
@@ -52,7 +36,7 @@ type Props = {
 const Bouncer = ({ age }: Props) => (...);
 ```
 
-## 3 - Component classes
+## 2 - Component classes
 
 Use component classes whenever local state and event handlers are needed. ES7 reduces a lot of boiler plate to use React Classes compared to recompose or other alternatives. 
 
@@ -62,8 +46,8 @@ class Counter extends React.Component {
   static defaultProps = { initialCount: 0 }; 
   state = { count: this.props.initialCount }; 
 
-  increment = () => this.setState({ count: this.state.count + 1 });
-  decrement = () => this.setState({ count: this.state.count - 1 });
+  increment = () => this.setState(({ count }) => ({ count: count + 1 }));
+  decrement = () => this.setState(({ count }) => ({ count: count - 1 }));
 
   render() {
     return (
@@ -76,6 +60,33 @@ class Counter extends React.Component {
   }
 }
 ```
+
+## 3 - Hooks
+
+As an alternative to using class components, you can use hooks to add local state and handlers.
+
+The same counter component can be implemented using hooks:
+```jsx
+const Counter = ({ initialCount = 0 }) => {
+
+  const [count, updateCount] = useState(initialCount);
+
+  const increment = useCallback(() => updateCount(count => count + 1), [updateCount]);
+  const decrement = useCallback(() => updateCount(count => count - 1), [updateCount]);
+
+  return (
+    <div>
+      {count}
+      <Button onClick={increment}>Inc</Button>
+      <Button onClick={decrement}>Dec</Button>
+    </div>
+  );
+}
+```
+
+The section below is kept for historical reasons. After using hocs extensively for ~2 years we have decided to recommend avoiding it whenever possible.
+If you're wondering why, the [official documentation](https://reactjs.org/docs/hooks-intro.html#motivation) has a section that explains it well. 
+--
 
 ## 4 - HOCs
 
