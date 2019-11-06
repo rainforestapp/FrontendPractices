@@ -84,9 +84,36 @@ const Counter = ({ initialCount = 0 }) => {
 }
 ```
 
+For `useEffect` hooks, consider naming the effect function for further clarity
+
+```jsx
+const Counter = ({ initialCount = 0 }) => {
+
+  const [count, updateCount] = useState(initialCount);
+
+  const increment = useCallback(() => updateCount(count => count + 1), [updateCount]);
+  const decrement = useCallback(() => updateCount(count => count - 1), [updateCount]);
+
+  useEffect(function setDocumentTitle() {
+    window.document.title = `The current count is ${count}`;
+  }, [count]);
+
+  return (
+    <div>
+      {count}
+      <Button onClick={increment}>Inc</Button>
+      <Button onClick={decrement}>Dec</Button>
+    </div>
+  );
+}
+```
+
+---
+
+
 The section below is kept for historical reasons. After using hocs extensively for ~2 years we have decided to recommend avoiding it whenever possible.
 If you're wondering why, the [official documentation](https://reactjs.org/docs/hooks-intro.html#motivation) has a section that explains it well. 
---
+
 
 ## 4 - HOCs
 
