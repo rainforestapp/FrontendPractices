@@ -96,7 +96,8 @@ const Counter = ({ initialCount = 0 }) => {
 
   useEffect(function setDocumentTitle() {
     window.document.title = `The current count is ${count}`;
-  }, [count])
+  }, [count]);
+
   return (
     <div>
       {count}
