@@ -36,36 +36,9 @@ type Props = {
 const Bouncer = ({ age }: Props) => (...);
 ```
 
-## 2 - Component classes
+## 2 - Hooks
 
-Use component classes whenever local state and event handlers are needed. ES7 reduces a lot of boiler plate to use React Classes compared to recompose or other alternatives. 
-
-A simple example of the usage would be:
-```jsx
-class Counter extends React.Component {
-  static defaultProps = { initialCount: 0 }; 
-  state = { count: this.props.initialCount }; 
-
-  increment = () => this.setState(({ count }) => ({ count: count + 1 }));
-  decrement = () => this.setState(({ count }) => ({ count: count - 1 }));
-
-  render() {
-    return (
-      <div>
-        {this.state.count}
-        <Button onClick={this.increment}>Inc</Button>
-        <Button onClick={this.decrement}>Dec</Button>
-      </div>
-    );
-  }
-}
-```
-
-## 3 - Hooks
-
-As an alternative to using class components, you can use hooks to add local state and handlers.
-
-The same counter component can be implemented using hooks:
+Use hooks whenever local state and/or handlers are needed.
 ```jsx
 const Counter = ({ initialCount = 0 }) => {
 
@@ -107,24 +80,3 @@ const Counter = ({ initialCount = 0 }) => {
   );
 }
 ```
-
----
-
-
-The section below is kept for historical reasons. After using hocs extensively for ~2 years we have decided to recommend avoiding it whenever possible.
-If you're wondering why, the [official documentation](https://reactjs.org/docs/hooks-intro.html#motivation) has a section that explains it well. 
-
-
-## 4 - HOCs
-
-Use HOCs when React Classes / Stateless components are not enough or too restrictive to implement certain behaviours. A good rule of thumb is to not implement new HOCs in components and rather re-use existing ones. Some valid use-cases are
-
-- Making sure state is persistent across user session. See [WithPersistentState](https://github.com/rainforestapp/regenwald/tree/develop/src/app/utilities/withPersistentState)
-- Subscribing / transforming data from redux. See [connect](http://redux.js.org/docs/basics/UsageWithReact.html)
-- Subscribing to action state changes. See [withButtonState](https://github.com/rainforestapp/regenwald/tree/develop/src/app/components/Button/withButtonState.js)
-- Accessing / Interacting with React Router. See [withRouter](https://github.com/ReactTraining/react-router/blob/master/packages/react-router/docs/api/withRouter.md)
-
-Following HOCs are discouraged to use independently and should only be used in conjunction with encouraged HOCs:
-- [featureFlag](https://github.com/rainforestapp/regenwald/tree/develop/src/app/utilities/featureFlag). Use [FeatureFlag](https://github.com/rainforestapp/regenwald/blob/develop/src/app/v2/components/FeatureFlag/index.js) component instead
-- withProps / mapProps / branch. Try to move those computations in the render part of the component itself.
-- withState / withStateHandlers / withHandlers / lifecycle. Try using a React Class instead
