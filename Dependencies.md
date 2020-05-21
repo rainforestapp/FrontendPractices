@@ -17,6 +17,19 @@ Some dependencies support submodules. This means that even though the entire lib
 
 For example, to include lodash in a module, you'd usually do something like `import _ from 'lodash';`. But since lodash consists of many tiny modules, you should just get the modules you need for this file, like `import pick from 'lodash/pick'`.
 
+Avoid using the `import * as` syntax when possible.
+Example:
+```jsx
+import React from 'react';
+
+import type { Node } from 'react
+```
+
+__AVOID__ this:
+```jsx
+import * as React from 'react';
+```
+
 ### Import order
 Imports should only be at the top of the file and in the order of:
 - React/Redux modules (react, redux, react-redux, react-router-dom, react-modal, etc)
