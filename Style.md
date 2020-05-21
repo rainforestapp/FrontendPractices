@@ -49,6 +49,8 @@ return <div>{boom}</div>;
 Although seemingly convenient (because this way we can have conditional logic inside jsx) it makes code hard to read.
 
 ## Comma separated values and react props
+Note: This is enforced by our linting rules
+
 Values and props are allowed on single lines if the line doesn't get too long:
 
 A jsx example:
@@ -96,12 +98,13 @@ Example: (__AVOID__)
   
 ```
 
-
 - Never nest ternaries.
 - Double-quotes for 'static' react propTypes like `<something some="hello"/>`.
 - Backtick quotes for string concatenation, also in jsx: ```<something some={`${a}_${b}`}/>```
 
 ## Returning multi-line JSX
+Note: This is enforced by our linting rules
+
 When returning multi-line JSX, the enclosing element's opening and closing tag should be indented properly. This means the closing parenthesis should be in line with the `return` statement.
 
 Example:
@@ -118,4 +121,17 @@ __AVOID__ this:
 return (<span>
   <p>whatever</p>
   </span>);
+```
+
+## Prefer arrow functions for components
+Example:
+```jsx
+const Foo = ({ bar }) => <div>{bar}</div>;
+```
+
+__AVOID__ this:
+```jsx
+function Foo({ bar }) {
+  return <div>{bar}</div>;
+}
 ```
