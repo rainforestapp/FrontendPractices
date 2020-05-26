@@ -38,7 +38,7 @@ const Bouncer = ({ age }: Props) => (...);
 
 ## 2 - Hooks
 
-Use hooks whenever local state and/or handlers are needed.
+Use [hooks](https://reactjs.org/docs/hooks-intro.html) whenever local state and/or handlers are needed.
 ```jsx
 const Counter = ({ initialCount = 0 }) => {
 
