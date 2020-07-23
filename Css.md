@@ -6,6 +6,7 @@ All new CSS should be written in CSS modules. Read more about them [here](https:
 ### Naming
 Use camelCase for class names as per the [recommendation](https://github.com/css-modules/css-modules#naming) of the docs. It makes for better interoperability in js eg. you can refer to classes with `styles.tooltipContent` vs `styles['tooltip-content']`
 
+Use `v-` prefix for reusable values as [recommended](https://github.com/webpack-contrib/css-loader#values) in the docs. It prevents naming clashes between class names and imported named values (an issue we've encountered [while upgrading](https://github.com/rainforestapp/regenwald/pull/6294) to `react-scripts` v3.3.1). It also makes it easier to notice an imported color value is used as opposed to a predefined standard css color e.g. `v-blue` vs `blue`, `v-black` vs `black`.
 
 ### Customizing UI Components
 
