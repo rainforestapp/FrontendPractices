@@ -164,46 +164,60 @@ describe('items actions', () => {
 });
 ```
 
-
-### Using the createMockStore Test Helper
-
-We have a `createMockStore` helper that takes care of applying the middleware, so the above example can be written as:
-
+### Using the MockStoreGenerator helper
+We have a `mockStoreGenerator` test helper that makes it very easy to generate a store filled with mock data. It can be used as:
 ```js
-// __tests__/actions.js
-import createMockStore from 'app/testHelpers/createMockStore';
-import { http } from 'app/services/http';
-import { duplicateItems } from '../actions'
-import { CREATE_ITEMS, FETCH_ITEMS, API_URL_ITEMS } from 'app/constants';
+jest.unmock('../index');
+import mockStoreGenerator from 'app/testHelpers/mockStoreGenerator';
+import { mount } from 'enzyme'
+import Comp from '../index';
 
-describe('items actions', () => {
-  let store;
-  const items = ['item1', 'item2'];
-  const itemsResponse = ['item3', 'item4'];
-  describe('duplicateItems', () => {
-    beforeEach(() => {
-      store = createMockStore({ });
-      http.put.mockReturnValue(Promise.resolve());
-      http.put.mockReturnValue(Promise.resolve(itemsResponse));
-      store.dispatch(duplicateItems(items));
-      jest.runAllTimers();
-    });
-
-    it(`fires PUT and dispatches ${CREATED_ITEMS} action`, () => {
-      expect(http.put).toBeCalledWith(API_URL_ITEMS, { items });
-      expect(store.getActions()).toContainEqual({ type: CREATED_ITEMS });
-    });
-
-    it(`re-fetches items and dispatches ${FETCHED_ITEMS} action`, () => {
-      expect(http.get).toBeCalledWith(API_URL_ITEMS);
-
-      jest.runAllTimers();
-
-      expect(store.getActions()).toContainEqual({type: FETCHED_ITEMS, payload: items});
-    });
+describe('Comp', () => {
+  let storeGen, comp;
+  beforeEach(() => {
+    storeGen = mockStoreGenerator()
+      .withEnvironments()
+      .withRunGroups()
+      .withFeatures()
+      .withSmartFolders()
+      .withLoadedStates([{ name: FETCHED_THINGS }]);
+     
+     comp = mount(<Comp />, { context: { store: storeGen.getStore() });
+  });
+  
+  it('renders', () => expect(comp).toMatchSnapshot());
+  
+  describe('when fetching things', () => {
+    beforeEach(() => storeGen.withLoadingStates([{ name: FETCHED_THINGS }]));
+    it('renders spinner', () => expect(comp).toMatchSnapshot());
   });
 });
 ```
+`mockStoreGenerator` is built on top of many transformations of models such as runGroups, features, smartFolders and so on. If a particular transform is missing, then it can be easily added. Each transform takes a redux store as the first param, and any custom args taken from the user of the transform, and returns a new store. Transforms can use the helper function `dispatchAction` to run a particular reducer to generate the transform like so:
+
+```js
+export function withMyCustomData(store, ...args) {
+  return store.dispatchAction({ type: 'FETCHED_MY_CUSTOM_DATA', payload: { ...mockData... });
+}
+```
+This would assume that a reducer for `MyCustomData` already exists and responds to the `FETCHED_MY_CUSTOM_DATA` action type. It can then be hooked to mockStoreGenerator at `src/app/helpers/mockStoreGenerator` like so:
+```js
+...
+import * as myCustomDataTransforms from './storeTransforms/myCustomDataTransforms';
+
+const transforms = {
+  ...myCustomDataTransforms,
+  ...
+};
+...
+
+```
+and it can then be applied as follows:
+```js
+const storeGen = mockStoreGenerator().withMyCustomData(...args);
+```
+
+Note: MockStoreGenerator is built on top of a low level helper called `createMockStore`, which is still used in a lot of tests that pre-dated `mockStoreGenerator`. It is advised to extend `mockStoreGenerator` directly when new data is needed instead of directly using `createMockStore` .
 
 ## Testing a Component
 
